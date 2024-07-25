@@ -2,11 +2,11 @@ version: "2.29.0"
 
 services:
   ddangkong-api-dev:
-    platform:
+    platform: linux/arm64/v8
     build:
       context: ../
       dockerfile: Dockerfile
       args:
-        SPRING_PROFILE=dev
+        - SPRING_PROFILE=dev
     ports:
       - "8080:8080"
