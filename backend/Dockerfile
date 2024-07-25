@@ -7,4 +7,4 @@ ENV SPRING_PROFILE=${SPRING_PROFILE}
 
 COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT [ "java", "-jar", "-Duser.timezone=Asia/Seoul", "-Dspring.profiles.active=${SPRING_PROFILE}", "app.jar" ]
+ENTRYPOINT [ "java", "-jar", "-Duser.timezone=Asia/Seoul", "-Dspring.profiles.active=$SPRING_PROFILE", "app.jar" ]
