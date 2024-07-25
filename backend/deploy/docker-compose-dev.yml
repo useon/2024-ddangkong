@@ -7,6 +7,6 @@ services:
       context: ../
       dockerfile: Dockerfile
       args:
-        - SPRINT_PROFILE=dev
+        - SPRING_PROFILE=dev
     ports:
       - "8080:8080"
