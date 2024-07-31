@@ -80,8 +80,6 @@ public class BalanceVoteService {
         Room room = roomRepository.getById(roomId);
         List<BalanceOption> balanceOptions = findBalanceOptions(room, balanceContentId);
 
-        
-
         BalanceOption firstOption = balanceOptions.get(0);
         BalanceOption secondOption = balanceOptions.get(1);
 
