@@ -34,7 +34,6 @@ public class BalanceContentService {
 
 
 
-
         return BalanceContentResponse.builder()
                 .roomContent(roomContent)
                 .firstOption(balanceOptions.get(0))
