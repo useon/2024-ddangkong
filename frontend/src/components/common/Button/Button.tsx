@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react';
 
 import { buttonLayout } from './Button.styled';
 
+// TODO: 버튼 position props 추가
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   onClick: () => void;
