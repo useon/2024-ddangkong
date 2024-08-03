@@ -32,6 +32,9 @@ public class BalanceContentService {
         RoomContent roomContent = findCurrentRoomContent(roomId);
         List<BalanceOption> balanceOptions = findBalanceOptions(roomContent.getBalanceContent());
 
+
+
+
         return BalanceContentResponse.builder()
                 .roomContent(roomContent)
                 .firstOption(balanceOptions.get(0))
