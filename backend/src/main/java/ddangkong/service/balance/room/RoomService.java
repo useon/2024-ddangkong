@@ -113,6 +113,18 @@ public class RoomService {
         }
     }
 
+    @Transactional
+    public Room moveToNextRound1(Long roomId) {
+        Room room = roomRepository.getById(roomId);
+        room.moveToNextRound();
+
+        if (room.isGameProgress()) {
+            RoomContent roomContent = getCurrentRoomContent(room);
+            roomContent.updateRoundEndedAt(LocalDateTime.now(clock), room.getTimeLimit());
+        }
+        return room;
+    }
+
     private RoomContent getCurrentRoomContent(Room room) {
         return roomContentRepository.findByRoomAndRound(room, room.getCurrentRound())
                 .orElseThrow(() -> new InternalServerException("해당 룸에서 진행 중인 라운드 컨텐츠가 존재하지 않습니다."));

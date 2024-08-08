@@ -5,11 +5,13 @@ import ddangkong.controller.balance.room.dto.RoomInfoResponse;
 import ddangkong.controller.balance.room.dto.RoomJoinRequest;
 import ddangkong.controller.balance.room.dto.RoomJoinResponse;
 import ddangkong.controller.balance.room.dto.RoomSettingRequest;
+import ddangkong.domain.balance.room.Room;
 import ddangkong.service.balance.room.RoomService;
 import ddangkong.service.balance.room.dto.RoundFinishedResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @Validated
 @RequiredArgsConstructor
+@Slf4j
 public class RoomController {
 
     private final RoomService roomService;
@@ -64,7 +67,8 @@ public class RoomController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/balances/rooms/{roomId}/next-round")
     public void moveToNextRound(@PathVariable @Positive Long roomId) {
-        roomService.moveToNextRound(roomId);
+        Room room = roomService.moveToNextRound1(roomId);
+        log.info("------------- room의 현재 라운드: {}", room.getCurrentRound());
     }
 
     @Polling

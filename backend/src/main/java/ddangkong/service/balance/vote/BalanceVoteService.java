@@ -24,11 +24,13 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BalanceVoteService {
 
     private final BalanceVoteRepository balanceVoteRepository;
@@ -113,6 +115,8 @@ public class BalanceVoteService {
     }
 
     private boolean isRoundFinished(Room room, BalanceContent balanceContent) {
+        log.info("------ 투표 종료 여부 확인! room의 현재 라운드 : {}, balanceContent : {}", room.getCurrentRound(),
+                balanceContent.getId());
         RoomContent roomContent = roomContentRepository.getByRoomAndBalanceContent(room, balanceContent);
         LocalDateTime now = LocalDateTime.now(clock);
         return roomContent.isRoundOver(now, room.getCurrentRound());
