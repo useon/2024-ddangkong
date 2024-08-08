@@ -31,6 +31,7 @@ import ddangkong.controller.balance.room.dto.RoomSettingRequest;
 import ddangkong.controller.balance.room.dto.RoomSettingResponse;
 import ddangkong.documentation.BaseDocumentationTest;
 import ddangkong.domain.balance.content.Category;
+import ddangkong.domain.balance.room.Room;
 import ddangkong.service.balance.room.RoomService;
 import ddangkong.service.balance.room.dto.RoundFinishedResponse;
 import java.util.List;
@@ -222,6 +223,7 @@ class RoomDocumentationTest extends BaseDocumentationTest {
         @Test
         void 다음_라운드로_이동한다() throws Exception {
             // when & then
+            when(roomService.moveToNextRound1(anyLong())).thenReturn(Room.createNewRoom());
             mockMvc.perform(patch(ENDPOINT, 1L)
                             .contentType(MediaType.APPLICATION_JSON)
                     )
