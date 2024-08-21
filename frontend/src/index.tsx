@@ -9,6 +9,8 @@ import App from './App';
 import GlobalStyle from './styles/GlobalStyle';
 import { Theme } from './styles/Theme';
 
+// prod 테스트 주석
+
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   integrations: [Sentry.browserTracingIntegration()],
