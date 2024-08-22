@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { getRoomInfo } from '@/apis/room';
 import { QUERY_KEYS } from '@/constants/queryKeys';
-import { ROUTES } from '@/constants/routes';
 import { ONE_SECOND } from '@/constants/time';
 
 export const useGetRoomInfo = () => {
@@ -15,12 +14,11 @@ export const useGetRoomInfo = () => {
     queryKey: [QUERY_KEYS.roomMembers, Number(roomId)],
     queryFn: ({ queryKey: [, roomId] }) => getRoomInfo(Number(roomId)),
     refetchInterval: ONE_SECOND,
-    gcTime: 0,
   });
 
   useEffect(() => {
     if (data?.isGameStart) {
-      navigate(ROUTES.game(Number(roomId)));
+      navigate(`/${roomId}/game`);
     }
   }, [data?.isGameStart, roomId, navigate]);
 

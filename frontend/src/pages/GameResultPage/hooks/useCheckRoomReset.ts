@@ -14,7 +14,6 @@ export const useIsRoomInitial = () => {
     queryKey: [QUERY_KEYS.isRoomInitial, Number(roomId)],
     queryFn: async () => await isRoomInitial(Number(roomId)),
     refetchInterval: ONE_SECOND,
-    gcTime: 0,
   });
 
   useEffect(() => {

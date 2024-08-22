@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
 import { buttonWrapper, gameTitle, headerLayout, roundText, iconImage } from './Header.styled';
 import { useBlockRefresh } from './hooks/useBlockRefresh';
@@ -13,7 +12,6 @@ import RoomSettingModal from '@/components/common/RoomSettingModal/RoomSettingMo
 import { ROUTES } from '@/constants/routes';
 import useBalanceContentQuery from '@/hooks/useBalanceContentQuery';
 import useModal from '@/hooks/useModal';
-import { memberInfoState } from '@/recoil/atom';
 
 interface HeaderProps {
   title: string;
@@ -47,7 +45,6 @@ export const TitleHeader = ({ title }: HeaderProps) => (
 export const RoomSettingHeader = ({ title }: HeaderProps) => {
   const { isOpen, show, close } = useModal();
   const { handleExit } = useExit();
-  const memberInfo = useRecoilValue(memberInfoState);
 
   return (
     <header css={headerLayout()}>
@@ -55,13 +52,9 @@ export const RoomSettingHeader = ({ title }: HeaderProps) => {
         <img src={ExitIcon} alt="방 설정" css={iconImage} />
       </button>
       <h1 css={gameTitle}>{title}</h1>
-      {memberInfo.isMaster ? (
-        <button onClick={show} css={buttonWrapper}>
-          <img src={SettingIcon} alt="방 설정" css={iconImage} />
-        </button>
-      ) : (
-        <span css={roundText}></span>
-      )}
+      <button onClick={show} css={buttonWrapper}>
+        <img src={SettingIcon} alt="방 설정" css={iconImage} />
+      </button>
       {isOpen && <RoomSettingModal isOpen={isOpen} onClose={close} />}
     </header>
   );

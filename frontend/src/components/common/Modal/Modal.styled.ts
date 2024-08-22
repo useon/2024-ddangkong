@@ -84,8 +84,6 @@ export const modalTitle = ({ fontSize = 'bold', fontWeight = '2rem' }: ModalTitl
 `;
 
 export const modalIconButton = ({ imgSize = '1.6rem' }: { imgSize?: string }) => css`
-  width: ${imgSize};
-  height: ${imgSize};
   padding: 0;
   border: none;
 
@@ -94,7 +92,7 @@ export const modalIconButton = ({ imgSize = '1.6rem' }: { imgSize?: string }) =>
   }
 
   img {
-    width: 100%;
+    width: ${imgSize};
   }
 `;
 

@@ -23,7 +23,6 @@ const useMyGameStatusQuery = ({ roomId, currentRound }: useMyGameStatusQueryProp
     },
     enabled: !!currentRound,
     refetchInterval: ONE_SECOND,
-    gcTime: 0,
   });
 
   return {

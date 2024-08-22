@@ -105,7 +105,6 @@ const reset = css`
   }
 
   body {
-    color: black;
     line-height: 1;
   }
 

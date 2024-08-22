@@ -24,6 +24,7 @@ export interface ModalProps
     onClose: () => void;
     position?: 'top' | 'bottom' | 'center';
     style?: React.CSSProperties;
+    onConfirm?: () => void;
   }> {}
 
 const Modal = ({ children, isOpen, onClose, position = 'center', ...restProps }: ModalProps) => {
@@ -98,7 +99,6 @@ const ModalIconButton = ({
 };
 
 interface ModalTextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  onConfirm?: () => void;
   buttonWidth?: string;
   buttonHeight?: string;
   fontSize?: string;
@@ -108,7 +108,6 @@ interface ModalTextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const ModalTextButton = ({
   type = 'button',
-  onConfirm,
   buttonWidth,
   buttonHeight,
   fontSize,
@@ -126,7 +125,6 @@ const ModalTextButton = ({
         fontColor,
       })}
       type={type}
-      onClick={onConfirm}
       {...restProps}
     />
   );

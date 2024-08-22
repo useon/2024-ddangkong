@@ -27,7 +27,6 @@ export const useRoundIsFinishedQuery = ({ contentId, enabled }: UseRoundIsFinish
     enabled,
     refetchInterval: POLLING_DELAY,
     refetchIntervalInBackground: true,
-    gcTime: 0,
   });
 
   return { ...roundIsFinishedQuery, isFinished: roundIsFinishedQuery.data?.isFinished };
