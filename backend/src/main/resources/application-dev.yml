@@ -20,11 +20,6 @@ spring:
         format_sql: true
         default_batch_fetch_size: 1000
 
-  task:
-    execution:
-      pool:
-        core-size: ${secret.spring.task.execution.pool.core-size}
-
 server:
   tomcat:
     threads:
