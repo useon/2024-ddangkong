@@ -25,6 +25,11 @@ spring:
       pool:
         core-size: ${secret.spring.task.execution.pool.core-size}
 
+server:
+  tomcat:
+    threads:
+      max: ${secret.server.tomcat.threads.max}
+
 cors:
   origin: ${secret.cors.origin}
 

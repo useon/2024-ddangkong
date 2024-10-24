@@ -41,6 +41,9 @@ spring:
 
 server:
   port: ${secret.application.port}
+  tomcat:
+    threads:
+      max: ${secret.server.tomcat.threads.max}
 
 cors:
   origin: ${secret.cors.origin}
