@@ -7,6 +7,8 @@ spring:
     url: jdbc:mysql://${secret.datasource.url}:${secret.datasource.port}/${secret.datasource.database}?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&autoReconnect=true&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
     username: ${secret.datasource.username}
     password: ${secret.datasource.password}
+    hikari:
+      minimum-idle: ${secret.datasource.hikari.minimum-idle}
 
   jpa:
     defer-datasource-initialization: true
