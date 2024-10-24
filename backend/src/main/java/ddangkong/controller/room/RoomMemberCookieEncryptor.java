@@ -1,6 +1,5 @@
 package ddangkong.controller.room;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.server.Cookie.SameSite;
 import org.springframework.http.ResponseCookie;
@@ -28,6 +27,16 @@ public class RoomMemberCookieEncryptor {
                 .secure(true)
                 .path(DEFAULT_PATH)
                 .sameSite(getSameSiteOption(origin))
+                .build();
+    }
+
+    public ResponseCookie deleteCookie(String origin) {
+        return ResponseCookie.from(rejoinKey, null)
+                .httpOnly(true)
+                .secure(true)
+                .path(DEFAULT_PATH)
+                .sameSite(getSameSiteOption(origin))
+                .maxAge(0)
                 .build();
     }
 

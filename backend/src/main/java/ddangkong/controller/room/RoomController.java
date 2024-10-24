@@ -83,8 +83,11 @@ public class RoomController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/balances/rooms/{roomId}/members/{memberId}")
     public void leaveRoom(@PathVariable @Positive Long roomId,
-                          @PathVariable @Positive Long memberId) {
+                          @PathVariable @Positive Long memberId,
+                          HttpServletRequest request,
+                          HttpServletResponse response) {
         roomFacade.leaveRoom(roomId, memberId);
+        deleteCookie(request, response);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -129,5 +132,12 @@ public class RoomController {
         String origin = request.getHeader(HttpHeaders.ORIGIN);
         ResponseCookie encodedCookie = roomMemberCookieEncryptor.getEncodedCookie(cookieValue, origin);
         response.addHeader(HttpHeaders.SET_COOKIE, encodedCookie.toString());
+    }
+
+    private void deleteCookie(HttpServletRequest request,
+                              HttpServletResponse response) {
+        String origin = request.getHeader(HttpHeaders.ORIGIN);
+        ResponseCookie deleteCookie = roomMemberCookieEncryptor.deleteCookie(origin);
+        response.addHeader(HttpHeaders.SET_COOKIE, deleteCookie.toString());
     }
 }

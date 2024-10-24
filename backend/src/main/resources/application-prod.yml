@@ -1,25 +1,17 @@
 spring:
   config:
     import: prod-secret.yml
-
   datasource:
     source:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: ${secret.datasource.source.username}
       password: ${secret.datasource.source.password}
       jdbc-url: jdbc:mysql://${secret.datasource.source.host}:${secret.datasource.source.port}/${secret.datasource.database}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
-      hikari:
-        minimum-idle: ${secret.datasource.hikari.minimum-idle}
-
-
     replica:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: ${secret.datasource.replica.username}
       password: ${secret.datasource.replica.password}
       jdbc-url: jdbc:mysql://${secret.datasource.replica.host}:${secret.datasource.replica.port}/${secret.datasource.database}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
-      hikari:
-        minimum-idle: ${secret.datasource.hikari.minimum-idle}
-
 
   sql:
     init:
@@ -33,11 +25,6 @@ spring:
       hibernate:
         jdbc:
           batch_size: 1000
-
-  task:
-    execution:
-      pool:
-        core-size: ${secret.spring.task.execution.pool.core-size}
 
 server:
   port: ${secret.application.port}
@@ -62,9 +49,6 @@ logging:
   location: ${secret.application.log.location}
 
 management:
-  server:
-    port: ${secret.actuator.port}
-
   endpoints:
     enabled-by-default: false
     web:
