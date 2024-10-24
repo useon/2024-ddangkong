@@ -1,6 +1,7 @@
 spring:
   config:
     import: prod-secret.yml
+
   datasource:
     source:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -25,6 +26,11 @@ spring:
       hibernate:
         jdbc:
           batch_size: 1000
+
+  task:
+    execution:
+      pool:
+        core-size: ${secret.spring.task.execution.pool.core-size}
 
 server:
   port: ${secret.application.port}
