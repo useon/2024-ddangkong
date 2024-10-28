@@ -26,6 +26,7 @@ public class RoomMemberCookieEncryptor {
                 .httpOnly(true)
                 .secure(true)
                 .path(DEFAULT_PATH)
+                .sameSite(getSameSiteOption(origin))
                 .build();
     }
 
@@ -34,6 +35,7 @@ public class RoomMemberCookieEncryptor {
                 .httpOnly(true)
                 .secure(true)
                 .path(DEFAULT_PATH)
+                .sameSite(getSameSiteOption(origin))
                 .maxAge(0)
                 .build();
     }
