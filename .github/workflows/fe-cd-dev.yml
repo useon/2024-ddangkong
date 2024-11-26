@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: frontend-build-dev
-          path: ./frontend/build
+          path: ./frontend/dist
 
   deploy:
     name: FE Deploy for Dev
