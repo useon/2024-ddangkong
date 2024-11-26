@@ -3,7 +3,7 @@ name: FE Build and Deploy for Dev
 on:
   push:
     branches:
-      - test/fe-cd # develop 브랜치에서만 실행
+      - develop # develop 브랜치에서만 실행
     paths:
       - 'frontend/**' # frontend 폴더가 변경된 경우에만 실행
 
@@ -26,6 +26,12 @@ jobs:
       - name: Build for Dev
         working-directory: ./frontend
         run: npm run build:dev
+
+      - name: Assume the directory1
+        run: ls -al frontend
+
+      - name: Assume the directory2
+        run: ls -al frontend/build
 
       # 4. Upload Build Artifact
       - name: Upload Build Artifact
