@@ -27,12 +27,6 @@ jobs:
         working-directory: ./frontend
         run: npm run build:dev
 
-      - name: Assume the directory1
-        run: ls -al frontend
-
-      - name: Assume the directory2
-        run: ls -al frontend/build
-
       # 4. Upload Build Artifact
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
