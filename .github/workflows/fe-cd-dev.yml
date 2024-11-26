@@ -24,8 +24,10 @@ jobs:
         working-directory: ./frontend
         run: npm run build:dev
 
-      - name: Check Build Directory
-        run: ls -al ./frontend/dist
+      # Debug Build Directory
+      - name: Debug Build Directory
+        working-directory: ./frontend
+        run: ls -al
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
@@ -44,6 +46,7 @@ jobs:
         with:
           name: frontend-build-dev
 
+      # Debug Artifact Directory
       - name: Debug Artifact Directory
         run: ls -al ./frontend/dist
 
@@ -53,10 +56,10 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set default.region ${{ secrets.AWS_REGION }}
 
-      - name: Upload to S3 (Dev)
+      - name: Upload to S3
         run: |
           aws s3 sync ./frontend/dist s3://${{ secrets.AWS_S3_BUCKET_DEV }} --delete
 
-      - name: Invalidate CloudFront Cache (Dev)
+      - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID_DEV }} --paths "/*"
