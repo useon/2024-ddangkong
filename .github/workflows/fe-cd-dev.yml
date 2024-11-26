@@ -55,9 +55,8 @@ jobs:
 
       # 3. Upload to S3
       - name: Upload to S3 (Dev)
-      - working-directory: ./frontend/dist
         run: |
-          aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET_DEV }} --delete
+          aws s3 sync ./frontend/dist s3://${{ secrets.AWS_S3_BUCKET_DEV }} --delete
 
       # 4. Invalidate CloudFront Cache
       - name: Invalidate CloudFront Cache (Dev)
