@@ -3,7 +3,7 @@ name: FE Build and Deploy for Dev
 on:
   push:
     branches:
-      - develop # develop 브랜치에서만 실행
+      - test/fe-cd # develop 브랜치에서만 실행
     paths:
       - 'frontend/**' # frontend 폴더가 변경된 경우에만 실행
 
