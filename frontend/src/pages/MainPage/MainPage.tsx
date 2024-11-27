@@ -22,7 +22,7 @@ const MainPage = () => {
       </div>
       <div css={titleContainer}>
         <h1 css={title}>땅콩</h1>
-        <h2 css={intro}>어색한 분위기를 주도해봐요!</h2>
+        <h2 css={intro}>어색한 분위기를 주도해봐요</h2>
       </div>
       <Button css={buttonText} text="방 만들기" onClick={handleRoomCreate} radius="medium" />
     </div>
