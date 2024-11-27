@@ -3,7 +3,7 @@ name: FE Build and Deploy for Dev
 on:
   push:
     branches:
-      - test/fe-cd # develop 브랜치에서만 실행
+      - develop # develop 브랜치에서만 실행
     paths:
       - 'frontend/**' # frontend 폴더가 변경된 경우에만 실행
 
@@ -13,21 +13,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Repository Checkout
+      # 1. Setup Node.js (Version 20)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # 2. Repository Checkout
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Install Dependencies
+      # 3. Generate .env File from Secret
+      - name: Generate .env File
+        working-directory: ./frontend
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
+      # 4. Install Dependencies
       - name: Install Dependencies
         working-directory: ./frontend
         run: npm install
 
-      # 3. Build Project
+      # 5. Build Project
       - name: Build for Dev
         working-directory: ./frontend
         run: npm run build:prod
 
-      # 4. Upload Build Artifact
+      # 6. Upload Build Artifact
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with:
